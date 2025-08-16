@@ -1,0 +1,12 @@
+:root {
+  --color-lightest: #D9D8D9;
+  --color-soft-purple: #B3A3BA;
+  --color-muted-purple: #8D769A;
+  --color-regular-purple: #68507B;
+  --color-dark-purple: #46315C;
+  --color-deep-purple: #28193D;
+  --color-nearly-black: #10091D;
+
+  --font-main: 'Roboto', sans-serif;
+}
+

@@ -1,0 +1,7 @@
+.main-footer {
+  background-color: var(--color-deep-purple);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
