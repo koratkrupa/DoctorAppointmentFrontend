@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import '../styles/doctorForm.css';
-import '../styles/variables.css';
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import "../styles/doctorForm.css";
+import "../styles/variables.css";
 
 const DoctorDetailsForm = () => {
+  const location = useLocation();
+  const userId = location.state?.userId || "";  // 👈 yaha userId milega
+
   const [formData, setFormData] = useState({
-    specialization: '',
-    qualification: '',
-    experience: '',
-    fees: '',
-    profile_pic: ''
+    userId,
+    specialization: "",
+    qualification: "",
+    experience: "",
+    fees: "",
+    profile_pic: ""
   });
 
   const handleChange = (e) => {
@@ -29,19 +34,19 @@ const DoctorDetailsForm = () => {
 
     try {
       const res = await fetch("http://localhost:5000/doctor/details", {
-        method: 'POST',
+        method: "POST",
         body: data
       });
 
       const result = await res.json();
       if (res.ok) {
-        alert('✅ Doctor details submitted successfully!');
+        alert("✅ Doctor details submitted successfully!");
         console.log(result);
       } else {
-        alert(result.message || '❌ Failed to submit details');
+        alert(result.message || "❌ Failed to submit details");
       }
     } catch (error) {
-      console.error('❌ Error:', error);
+      console.error("❌ Error:", error);
     }
   };
 

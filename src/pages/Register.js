@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/variables.css";
+import {useNavigate} from "react-router-dom";
 import { API } from "../config/api";
 
 const Register = () => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,9 +52,9 @@ const Register = () => {
       if (res.ok) {
         alert(data.message); // ✅ backend se { message: "..."} aa raha hai
         if (formData.role === "Patient") {
-          // navigate("/patient-dashboard");
+          navigate("/patient-dashboard");
         } else if (formData.role === "Doctor") {
-          // navigate("/doctor-details-form");
+          navigate("/doctorsd", {state : {userId : data.user._id}});
         }
       } else {
         alert(data.message || "❌ Registration failed");
