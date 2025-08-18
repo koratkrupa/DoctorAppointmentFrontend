@@ -28,7 +28,7 @@ const DoctorDetailsForm = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/doctor/details", {
+      const res = await fetch("http://localhost:5000/doctor/details", {
         method: 'POST',
         body: data
       });

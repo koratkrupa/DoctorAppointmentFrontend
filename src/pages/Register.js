@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/variables.css";
-import DoctorDetailsForm from "./DoctorDetailsForm.js"
+import { API } from "../config/api";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,8 +33,10 @@ const Register = () => {
 
     const { confirmPassword, ...submitData } = formData;
 
+    console.log("Submitting form data:", submitData);
+
     try {
-      const res = await fetch("http://localhost:3000/user/register", {
+      const res = await fetch(API.REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,17 +46,18 @@ const Register = () => {
 
       const data = await res.json();
       if (res.ok) {
+        alert(data.message); // ✅ backend se { message: "..."} aa raha hai
         if (formData.role === "Patient") {
           // navigate("/patient-dashboard");
-          // <DoctorDetailsForm />
         } else if (formData.role === "Doctor") {
           // navigate("/doctor-details-form");
         }
       } else {
-        alert(data.Message || "❌ Registration failed");
+        alert(data.message || "❌ Registration failed");
       }
     } catch (error) {
       console.error("❌ API error:", error);
+      alert("Server error, try again later!");
     }
   };
 
@@ -77,32 +80,13 @@ const Register = () => {
           <label>Gender</label>
           <div className="gender-options">
             <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Male"
-                onChange={handleChange}
-                required
-              />{" "}
-              Male
+              <input type="radio" name="gender" value="Male" onChange={handleChange} required /> Male
             </label>
             <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Female"
-                onChange={handleChange}
-              />{" "}
-              Female
+              <input type="radio" name="gender" value="Female" onChange={handleChange} /> Female
             </label>
             <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Other"
-                onChange={handleChange}
-              />{" "}
-              Other
+              <input type="radio" name="gender" value="Other" onChange={handleChange} /> Other
             </label>
           </div>
         </div>
@@ -124,22 +108,12 @@ const Register = () => {
 
         <div className="form-group">
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            required
-          />
+          <input type="password" name="password" onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label>Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            onChange={handleChange}
-            required
-          />
+          <input type="password" name="confirmPassword" onChange={handleChange} required />
         </div>
 
         <div className="form-group">

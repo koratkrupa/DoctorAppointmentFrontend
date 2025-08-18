@@ -60,7 +60,8 @@
 .register-form input[type="date"],
 .register-form input[type="email"],
 .register-form input[type="tel"],
-.register-form input[type="password"] {
+.register-form input[type="password"],
+.register-form input[type="text"] {
   border: 2px solid var(--color-muted-purple);
 }
 

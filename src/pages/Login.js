@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../styles/login.css"; // your existing CSS
 import "../styles/variables.css";
+import {API} from "../config/api";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,31 +24,37 @@ const Login = () => {
     setMessage("");
 
     try {
-      const res = await fetch("http://localhost:3000/user/login", {
+      const res = await fetch(API.LOGIN, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
         alert("✅ Login successful!");
-        console.log("User Data:", data.user);
+        // console.log("User Data:", data.user);
+
+        // Token save to localStoring
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
 
         // ✅ Optional: Navigate to dashboard
-        if (data.user.role === "Patient") {
+        if (data.role === "Patient") {
           window.location.href = "/patient-dashboard";
-        } else if (data.user.role === "Doctor") {
+        } else if (data.role === "Doctor") {
           window.location.href = "/doctor-dashboard";
-        } else if (data.user.role === "Admin") {
+        } else if (data.role === "Admin") {
           window.location.href = "/admin-dashboard";
         }
-
       } else {
-        alert("❌ Login failed");
+        alert(data.message || "❌ Login failed");
       }
     } catch (error) {
       console.error("API Error:", error);
@@ -67,11 +74,18 @@ const Login = () => {
 
         <div className="form-group">
           <label>Password</label>
-          <input type="password" name="password" onChange={handleChange} required />
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        <button type="submit" className="login-button">Login</button>
-{/* 
+        <button type="submit" className="login-button">
+          Login
+        </button>
+        {/* 
         {message && <p style={{ marginTop: "15px", color: "#B696C5" }}>{message}</p>} */}
 
         <div className="register-link">
