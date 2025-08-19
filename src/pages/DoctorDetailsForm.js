@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../styles/doctorForm.css";
 import "../styles/variables.css";
+import { API } from "../config/api";
+import { useNavigate } from "react-router-dom";
 
 const DoctorDetailsForm = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const userId = location.state?.userId || "";  // 👈 yaha userId milega
 
@@ -33,7 +36,7 @@ const DoctorDetailsForm = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/doctor/details", {
+      const res = await fetch(API.DOCTORDETAIL, {
         method: "POST",
         body: data
       });
@@ -42,6 +45,7 @@ const DoctorDetailsForm = () => {
       if (res.ok) {
         alert("✅ Doctor details submitted successfully!");
         console.log(result);
+        navigate("/doctor-dashboard")
       } else {
         alert(result.message || "❌ Failed to submit details");
       }

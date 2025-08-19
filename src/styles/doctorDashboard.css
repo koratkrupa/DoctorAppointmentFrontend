@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import './variables.css';
+
+/* Main container */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background-color: var(--color-lightest);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, var(--color-regular-purple), var(--color-dark-purple));
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+}
+
+.sidebar a {
+  display: block;
+  margin: 12px 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: var(--color-soft-purple);
+  transform: translateX(5px);
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  margin-left: 260px; /* Sidebar ke liye jagah banayi */
+}
+
+.dashboard-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: var(--color-dark-purple);
+}
+
+/* Doctor card */
+.doctor-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.doctor-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.doctor-info h3 {
+  margin: 0;
+  color: var(--color-dark-purple);
+  font-size: 20px;
+}
+
+.doctor-info p {
+  margin: 5px 0;
+  color: var(--color-regular-purple);
+  font-size: 15px;
+}

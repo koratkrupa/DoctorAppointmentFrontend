@@ -2,7 +2,8 @@
 const BASE_URL = "http://localhost:5000";
 
 export const API = {
-  REGISTER: "http://localhost:5000/user/register",
+  REGISTER: `${BASE_URL}/user/register`,
   LOGIN: `${BASE_URL}/user/login`,
+  DOCTORDETAIL : `${BASE_URL}/doctor/details`
   
 };
