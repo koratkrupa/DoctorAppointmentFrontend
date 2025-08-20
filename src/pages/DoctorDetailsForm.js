@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "../styles/doctorForm.css";
+import "../styles/doctorDetailsForm.css";
 import "../styles/variables.css";
 import { API } from "../config/api";
 import { useNavigate } from "react-router-dom";

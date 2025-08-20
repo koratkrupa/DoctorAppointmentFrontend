@@ -1,93 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import './variables.css';
 
-/* Main container */
-.dashboard-container {
+.dashboard-page {
   display: flex;
   min-height: 100vh;
   font-family: var(--font-main);
-  background-color: var(--color-lightest);
+  background: var(--color-lightest);
 }
 
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background: linear-gradient(180deg, var(--color-regular-purple), var(--color-dark-purple));
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-
-.sidebar h2 {
-  font-size: 22px;
-  margin-bottom: 25px;
-  font-weight: 700;
-  text-align: center;
-  color: #fff;
-}
-
-.sidebar a {
-  display: block;
-  margin: 12px 0;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.sidebar a:hover {
-  color: var(--color-soft-purple);
-  transform: translateX(5px);
-}
-
-/* Dashboard Content */
+/* Content Area */
 .dashboard-content {
-  flex: 1;
-  padding: 30px;
-  margin-left: 260px; /* Sidebar ke liye jagah banayi */
+  margin-left: 240px; /* Sidebar slim ho gaya */
+  padding: 40px;
+  width: calc(100% - 240px);
+  box-sizing: border-box;
 }
 
+/* Header */
 .dashboard-header {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  color: var(--color-dark-purple);
+  background: linear-gradient(135deg, var(--color-regular-purple), var(--color-dark-purple));
+  color: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  margin: 0 20px 40px 20px; /* 👈 left-right space */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* Doctor card */
-.doctor-card {
-  display: flex;
-  align-items: center;
+.dashboard-header h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.dashboard-header p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin: 0 20px; /* 👈 cards me bhi gap */
+}
+
+.card {
   background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
 }
 
-.doctor-card img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-.doctor-info h3 {
-  margin: 0;
-  color: var(--color-dark-purple);
+.card h2 {
   font-size: 20px;
+  color: var(--color-dark-purple);
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
-.doctor-info p {
-  margin: 5px 0;
+.card p {
+  font-size: 18px;
   color: var(--color-regular-purple);
-  font-size: 15px;
+  font-weight: 700;
 }
