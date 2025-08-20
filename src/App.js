@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import DoctorDetailsForm from "./pages/DoctorDetailsForm";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import DoctorProfile from "./pages/DoctorProfile";
+import DoctorAppointments from "./pages/DoctorAppointments";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/doctorsd" element={<DoctorDetailsForm />} />
         <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
         <Route path="/doctor/profile" element={<DoctorProfile/>} />
+        <Route path="/doctor/appointments" element={<DoctorAppointments/>} />
       </Routes>
     </Router>
   );
