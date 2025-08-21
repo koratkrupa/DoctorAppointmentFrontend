@@ -1,0 +1,56 @@
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: var(--color-dark-purple);
+  color: var(--color-lightest);
+  padding: 20px;
+  font-family: var(--font-main);
+}
+
+.sidebar h2 {
+  margin: 20px 0;
+  font-size: 1.4rem;
+  color: var(--color-lightest);
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: var(--color-lightest);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.sidebar ul li a:hover {
+  background: var(--color-muted-purple);
+}
+
+.logout-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-regular-purple);
+  color: var(--color-lightest);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: var(--color-muted-purple);
+}

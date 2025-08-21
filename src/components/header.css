@@ -1,43 +1,65 @@
-.main-header {
-  background-color: var(--color-deep-purple);
-  color: white;
+@import "../styles/variables.css";
+
+.site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--color-regular-purple);
+  padding: 15px 50px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.main-header .logo {
+/* Logo */
+.logo {
   font-size: 24px;
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
-.navbar {
+/* Navigation */
+nav {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  list-style: none;
 }
 
-.navbar a {
-  color: white;
+nav li {
+  list-style: none;
+}
+
+nav a {
   text-decoration: none;
+  font-size: 16px;
+  color: #fff;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.navbar a:hover {
-  text-decoration: underline;
+nav a:hover {
+  color: var(--color-lightest);
 }
 
+/* Login button */
 .login-btn {
-  background-color: var(--color-soft-purple);
-  color: white;
+  padding: 8px 18px;
   border: none;
-  padding: 10px 20px;
   border-radius: 6px;
+  background: #fff;
+  color: var(--color-regular-purple);
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;  /* Remove underline */
+  display: inline-block;  /* Proper padding */
 }
 
 .login-btn:hover {
-  background-color: var(--color-regular-purple);
+  background: var(--color-dark-purple);
+  color: #fff;
+  text-decoration: none;  /* Ensure no underline on hover */
 }
+

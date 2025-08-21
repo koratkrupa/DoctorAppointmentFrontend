@@ -1,20 +1,17 @@
-// src/components/Header.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import "./header.css";
-import Login from "../pages/Login";
+
 const Header = () => {
   return (
-    <header className="main-header">
-      <div className="logo">MEDICARE</div>
-      <nav className="navbar">
-        <a href="/">Home</a>
-        <a href="#">Consult Now</a>
-        <a href="#">Book Lab Test</a>
-        <a href="#">Packages</a>
-        <a href="#">About Us</a>
-        <a href="#">Help</a>
+    <header className="site-header">
+      <div className="logo">MEDCARE</div>
+      <nav>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
       </nav>
-      <button className="login-btn"><a href="/Login">Login/Signup</a></button>
+      <Link to="/login" className="login-btn">Login / Signup</Link>
     </header>
   );
 };

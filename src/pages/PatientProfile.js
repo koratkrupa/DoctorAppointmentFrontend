@@ -1,102 +1,124 @@
-// src/pages/DoctorProfile.js
 import React, { useState } from "react";
-import Sidebar from "../components/DoctorSidebar";
-import "../styles/doctorProfile.css";
-import doctorImg from "../assets/p1.jpg"
+import "../styles/patientProfile.css";
+import PatientSidebar from "../components/PatientSidebar";
 
-const DoctorProfile = () => {
+const PatientProfile = () => {
   const [edit, setEdit] = useState(false);
-  const [doctor, setDoctor] = useState({
-    name: "Dr. Krupa Korat",
-    specialization: "Cardiologist",
-    experience: "5 years",
-    fees: "₹500",
+
+  const [patient, setPatient] = useState({
+    name: "Korat Krupa",
     email: "krupa@gmail.com",
     phone: "9876543210",
-    profilePic: doctorImg
+    address: "Surat, Gujarat",
+    dob: "1999-05-12",
+    gender: "Female",
+    role: "Patient", 
   });
 
   const handleChange = (e) => {
-    setDoctor({ ...doctor, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setPatient({ ...patient, [name]: value });
   };
 
   return (
     <div className="dashboard-page">
-      <Sidebar />
       <div className="profile-container">
-        {/* Left profile card */}
+        <PatientSidebar/>
         <div className="profile-card">
-          <img src={doctor.profilePic} alt="Doctor" className="profile-pic" />
           {edit ? (
             <input
               type="text"
               name="name"
-              value={doctor.name}
+              value={patient.name}
               onChange={handleChange}
               className="edit-input"
             />
           ) : (
-            <h2>{doctor.name}</h2>
+            <>
+              <h2>{patient.name}</h2>
+              <p className="role-text">{patient.role}</p> {/* 👈 Role yaha show hoga */}
+            </>
           )}
-          <p>{doctor.specialization}</p>
+
           <button className="edit-btn" onClick={() => setEdit(!edit)}>
             {edit ? "Save" : "Edit Profile"}
           </button>
         </div>
 
-        {/* Right details section */}
+        {/* Right side details */}
         <div className="details-card">
-          <h3>Profile Details</h3>
+          <h3>Patient Details</h3>
+
           <div className="detail-row">
             <span>Email:</span>
             {edit ? (
               <input
                 type="email"
                 name="email"
-                value={doctor.email}
+                value={patient.email}
                 onChange={handleChange}
               />
             ) : (
-              <p>{doctor.email}</p>
+              <p>{patient.email}</p>
             )}
           </div>
+
           <div className="detail-row">
             <span>Phone:</span>
             {edit ? (
               <input
                 type="text"
                 name="phone"
-                value={doctor.phone}
+                value={patient.phone}
                 onChange={handleChange}
               />
             ) : (
-              <p>{doctor.phone}</p>
+              <p>{patient.phone}</p>
             )}
           </div>
+
           <div className="detail-row">
-            <span>Experience:</span>
+            <span>Address:</span>
             {edit ? (
               <input
                 type="text"
-                name="experience"
-                value={doctor.experience}
+                name="address"
+                value={patient.address}
                 onChange={handleChange}
               />
             ) : (
-              <p>{doctor.experience}</p>
+              <p>{patient.address}</p>
             )}
           </div>
+
           <div className="detail-row">
-            <span>Fees:</span>
+            <span>Date of Birth:</span>
             {edit ? (
               <input
-                type="text"
-                name="fees"
-                value={doctor.fees}
+                type="date"
+                name="dob"
+                value={patient.dob}
                 onChange={handleChange}
               />
             ) : (
-              <p>{doctor.fees}</p>
+              <p>{patient.dob}</p>
+            )}
+          </div>
+
+          <div className="detail-row">
+            <span>Gender:</span>
+            {edit ? (
+              <select
+                name="gender"
+                value={patient.gender}
+                onChange={handleChange}
+              >
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            ) : (
+              <p>{patient.gender}</p>
             )}
           </div>
         </div>
@@ -105,4 +127,4 @@ const DoctorProfile = () => {
   );
 };
 
-export default DoctorProfile;
+export default PatientProfile;

@@ -1,204 +1,199 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import './variables.css';
+@import "../styles/variables.css";
 
-.home-wrapper {
+/* --- General Page --- */
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-main);
-  background-color: var(--color-lightest);
+  background: var(--color-lightest);
 }
 
-/* Navbar */
-.navbar {
-  background-color: var(--color-deep-purple);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
-  align-items: center;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: white;
-}
-
-.nav-links {
-  display: flex;
-  gap: 25px;
-  list-style: none;
-}
-
-.nav-links li {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.login-btn {
-  background-color: var(--color-regular-purple);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Location + Search */
-.location-search {
-  background-color: #f6f6f6;
-  padding: 20px 40px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.location-search input {
-  flex: 1;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: 1px solid var(--color-muted-purple);
-  font-size: 16px;
-}
-
-/* Cards */
-.action-cards {
+/* --- Search Bar --- */
+.search-bar {
+  margin: 2rem auto 2rem auto; /* top & bottom spacing */
   display: flex;
   justify-content: center;
-  gap: 25px;
-  padding: 40px 20px;
+  align-items: center;
+  position: relative;
+  width: 60%;
+  max-width: 500px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 3rem; /* left padding for icon */
+  border-radius: 50px;
+  border: 2px solid var(--color-regular-purple);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: linear-gradient(145deg, #fff, var(--color-lightest));
+  color: var(--color-dark-purple);
+}
+
+.search-bar input:focus {
+  border-color: var(--color-dark-purple);
+  box-shadow: 0 0 12px rgba(70, 49, 92, 0.4);
+}
+
+.search-bar input::placeholder {
+  color: var(--color-muted-purple);
+  font-style: italic;
+}
+
+.search-bar::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  font-size: 1.1rem;
+  color: var(--color-muted-purple);
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* --- Home Cards Section --- */
+.home-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 1.5rem 0 2.5rem 0; /* vertical spacing */
 }
 
 .card {
-  background-color: white;
-  padding: 25px;
+  background: #fff;
+  padding: 1.8rem 1.5rem;
   border-radius: 16px;
-  width: 220px;
+  width: 260px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.card.active {
-  background-color: var(--color-soft-purple);
-  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Specialities */
-.speciality-section {
-  padding: 40px 20px;
-  text-align: center;
+.card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--color-dark-purple);
 }
 
-.speciality-section h2 {
-  margin-bottom: 30px;
-  color: var(--color-deep-purple);
-}
-
-.speciality-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.speciality-card {
-  background-color: white;
-  border: 1px solid var(--color-muted-purple);
-  padding: 20px;
-  border-radius: 12px;
-  width: 150px;
-  text-align: center;
-}
-
-.speciality-card .icon {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.speciality-card button {
-  background-color: var(--color-regular-purple);
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 40px 20px 20px;
-}
-
-.section-header h2 {
-  font-size: 22px;
-  color: var(--color-deep-purple);
-}
-
-.view-all-btn {
-  background-color: var(--color-regular-purple);
-  color: white;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-
-/* Lab Tests Grid */
-.lab-test-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding-bottom: 60px;
-}
-
-.lab-test-card {
-  width: 200px;
-  padding: 20px;
-  border-radius: 12px;
-  background-color: white;
-  position: relative;
-  text-align: center;
-  border: 1px solid var(--color-muted-purple);
-}
-
-.lab-test-card .discount {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: crimson;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 8px;
-  font-size: 13px;
-}
-
-.lab-test-card .icon {
-  font-size: 40px;
-  margin: 20px 0;
-}
-
-.view-details {
-  background-color: transparent;
-  border: 1px solid var(--color-regular-purple);
+/* --- Section Titles (Select a Speciality / Symptoms) --- */
+h2 {
+  margin: 5rem 0 2.5rem 0;    /* top margin increased to 5rem, bottom 2.5rem */
+  font-size: 2rem;            /* readable & prominent */
+  font-weight: 700;           /* bold but clean */
   color: var(--color-regular-purple);
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  cursor: pointer;
+  text-align: center;         /* centered */
+  letter-spacing: 1px;
+  position: relative;
 }
 
-.icon-img {
+/* Optional underline for clean separation */
+h2::after {
+  content: "";
+  display: block;
   width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
+  height: 3px;
+  background: var(--color-regular-purple);
+  margin: 0.5rem auto 0 auto;
+  border-radius: 2px;
+}
+
+
+/* --- Specialities Section --- */
+.specialities {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2.5rem; /* bottom spacing */
+}
+
+.speciality {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.speciality:hover {
+  transform: scale(1.05);
+}
+
+.speciality img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+.speciality span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-deep-purple);
+}
+
+/* --- Symptoms Section --- */
+.symptoms {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem; /* bottom spacing */
+}
+
+.symptom {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.symptom:hover {
+  transform: scale(1.05);
+}
+
+.symptom img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1rem;
+}
+
+.symptom span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-regular-purple);
+}
+
+/* --- Book Now Button --- */
+.book-btn {
+  background: var(--color-regular-purple);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.book-btn:hover {
+  background: var(--color-dark-purple);
+  transform: translateY(-2px);
 }
