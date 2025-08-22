@@ -35,11 +35,11 @@ const Login = () => {
 
       // role wise navigation
       if (data.user.role === "Doctor") {
-        navigate("/doctor-dashboard");
+        navigate("/doctor/dashboard");
       } else if (data.user.role === "Patient") {
-        navigate("/patient-dashboard");
+        navigate("/patient/dashboard");
       } else if (data.user.role === "Admin") {
-        navigate("/admin-dashboard");
+        navigate("/");
       } else {
         navigate("/");
       }

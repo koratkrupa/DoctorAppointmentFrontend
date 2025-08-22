@@ -13,6 +13,9 @@ import PatientProfile from "./pages/PatientProfile";
 import PatientAppointments from "./pages/PatientAppointments";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import DoctorListing from "./pages/DoctorListing";
+import BookAppointment from "./pages/BookAppointment";
+import PublicDoctorProfile from "./pages/PublicDoctorProfile";
 
 function App() {
   return (
@@ -29,7 +32,10 @@ function App() {
         <Route path="/patient/profile" element={<PatientProfile />} />
         <Route path="/patient/appointments" element={<PatientAppointments/>} />
         <Route path="/about" element={<About/>} />
-        <Route path="contact" element={<Contact/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/doctors" element={<DoctorListing/>} />
+        <Route path="/book-appointment/:doctorId" element={<BookAppointment/>} />
+        <Route path="/doctor-profile/:doctorId" element={<PublicDoctorProfile/>} />
 
       </Routes>
     </Router>

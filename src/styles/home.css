@@ -21,7 +21,7 @@ body, html {
 
 .search-bar input {
   width: 100%;
-  padding: 0.9rem 1rem 0.9rem 3rem; /* left padding for icon */
+  padding: 0.9rem 1rem; /* removed left padding since icon is gone */
   border-radius: 50px;
   border: 2px solid var(--color-regular-purple);
   font-size: 1rem;
@@ -42,16 +42,7 @@ body, html {
   font-style: italic;
 }
 
-.search-bar::before {
-  content: "🔍";
-  position: absolute;
-  left: 12px;
-  font-size: 1.1rem;
-  color: var(--color-muted-purple);
-  pointer-events: none;
-  top: 50%;
-  transform: translateY(-50%);
-}
+
 
 /* --- Home Cards Section --- */
 .home-cards {

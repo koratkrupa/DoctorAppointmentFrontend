@@ -1,23 +1,108 @@
 // src/pages/DoctorProfile.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/DoctorSidebar";
 import "../styles/doctorProfile.css";
-import doctorImg from "../assets/p1.jpg"
+import doctorImg from "../assets/p1.jpg";
+import { API } from "../config/api";
+const BACKEND_URL = "http://localhost:5000";
 
 const DoctorProfile = () => {
   const [edit, setEdit] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
   const [doctor, setDoctor] = useState({
-    name: "Dr. Krupa Korat",
-    specialization: "Cardiologist",
-    experience: "5 years",
-    fees: "₹500",
-    email: "krupa@gmail.com",
-    phone: "9876543210",
+    name: "",
+    specialization: "",
+    qualification: "",
+    experience: "",
+    fees: "",
+    email: "",
+    phone: "",
+    address: "",
     profilePic: doctorImg
   });
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    const load = async () => {
+      try {
+        const res = await fetch(API.DOCTOR_DASHBOARD, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to load profile");
+
+        setDoctor((prev) => ({
+          ...prev,
+          name: data?.doctor?.name || "",
+          specialization: data?.doctor?.specialization || "",
+          qualification: data?.doctor?.qualification || "",
+          experience: String(data?.doctor?.experience ?? ""),
+          fees: String(data?.doctor?.fees ?? ""),
+          email: data?.doctor?.email || "",
+          profilePic: data?.doctor?.profile_pic 
+            ? `${BACKEND_URL}${data.doctor.profile_pic}` 
+            : doctorImg,
+        }));
+      } catch (e) {
+        // show minimal error, keep defaults
+      }
+    };
+    load();
+  }, []);
+
   const handleChange = (e) => {
     setDoctor({ ...doctor, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    const f = e.target.files?.[0];
+    setFile(f || null);
+    if (f) {
+      const url = URL.createObjectURL(f);
+      setDoctor((d) => ({ ...d, profilePic: url }));
+    }
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    setMessage("");
+    try {
+      const token = localStorage.getItem("token");
+      const form = new FormData();
+      if (doctor.name) form.append("name", doctor.name);
+      if (doctor.email) form.append("email", doctor.email);
+      if (doctor.phone) form.append("phone", doctor.phone);
+      if (doctor.address) form.append("address", doctor.address);
+      if (doctor.specialization) form.append("specialization", doctor.specialization);
+      if (doctor.qualification) form.append("qualification", doctor.qualification);
+      if (doctor.experience !== "") form.append("experience", String(parseInt(doctor.experience || 0, 10)));
+      if (doctor.fees !== "") form.append("fees", String(parseInt(doctor.fees || 0, 10)));
+      if (file) form.append("profile_pic", file);
+
+      const res = await fetch(API.DOCTOR_PROFILE_UPDATE, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: form,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to update profile");
+      setMessage("Profile updated successfully");
+      setEdit(false);
+      // Reload profile data after successful update
+      if (data.doctor?.profile_pic) {
+        setDoctor(prev => ({
+          ...prev,
+          profilePic: `${BACKEND_URL}${data.doctor.profile_pic}`
+        }));
+      }
+    } catch (e) {
+      setMessage(e.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -28,25 +113,59 @@ const DoctorProfile = () => {
         <div className="profile-card">
           <img src={doctor.profilePic} alt="Doctor" className="profile-pic" />
           {edit ? (
-            <input
-              type="text"
-              name="name"
-              value={doctor.name}
-              onChange={handleChange}
-              className="edit-input"
-            />
+            <>
+              <input
+                type="text"
+                name="name"
+                value={doctor.name}
+                onChange={handleChange}
+                className="edit-input"
+              />
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+            </>
           ) : (
-            <h2>{doctor.name}</h2>
+            <h2>{doctor.name || "Doctor"}</h2>
           )}
           <p>{doctor.specialization}</p>
-          <button className="edit-btn" onClick={() => setEdit(!edit)}>
-            {edit ? "Save" : "Edit Profile"}
-          </button>
+          {edit ? (
+            <button className="edit-btn" onClick={handleSave} disabled={saving}>
+              {saving ? "Saving..." : "Save"}
+            </button>
+          ) : (
+            <button className="edit-btn" onClick={() => setEdit(true)}>Edit Profile</button>
+          )}
+          {message && <p style={{ marginTop: 8 }}>{message}</p>}
         </div>
 
         {/* Right details section */}
         <div className="details-card">
           <h3>Profile Details</h3>
+          <div className="detail-row">
+            <span>Specialization:</span>
+            {edit ? (
+              <input
+                type="text"
+                name="specialization"
+                value={doctor.specialization}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{doctor.specialization}</p>
+            )}
+          </div>
+          <div className="detail-row">
+            <span>Qualification:</span>
+            {edit ? (
+              <input
+                type="text"
+                name="qualification"
+                value={doctor.qualification}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{doctor.qualification}</p>
+            )}
+          </div>
           <div className="detail-row">
             <span>Email:</span>
             {edit ? (
@@ -74,10 +193,10 @@ const DoctorProfile = () => {
             )}
           </div>
           <div className="detail-row">
-            <span>Experience:</span>
+            <span>Experience (years):</span>
             {edit ? (
               <input
-                type="text"
+                type="number"
                 name="experience"
                 value={doctor.experience}
                 onChange={handleChange}
@@ -90,7 +209,7 @@ const DoctorProfile = () => {
             <span>Fees:</span>
             {edit ? (
               <input
-                type="text"
+                type="number"
                 name="fees"
                 value={doctor.fees}
                 onChange={handleChange}

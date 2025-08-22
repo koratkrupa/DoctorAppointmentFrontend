@@ -1,21 +1,61 @@
 // src/pages/DoctorAppointments.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/DoctorSidebar";
 import "../styles/doctorAppointments.css";
+import { API } from "../config/api";
 
 const DoctorAppointments = () => {
-  const appointments = [
-    { id: 1, patient: "John Doe", date: "2025-08-20", time: "10:00 AM", status: "Upcoming" },
-    { id: 2, patient: "Jane Smith", date: "2025-08-21", time: "11:30 AM", status: "Completed" },
-    { id: 3, patient: "Robert Brown", date: "2025-08-22", time: "02:00 PM", status: "Upcoming" },
-  ];
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Not authenticated");
+      setLoading(false);
+      return;
+    }
+
+    const fetchAppointments = async () => {
+      try {
+        const res = await fetch(API.DOCTOR_APPOINTMENTS, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to load appointments");
+
+        setAppointments(data.appointments || []);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
 
   return (
     <div className="appointments-page">
       <Sidebar />
       <div className="appointments-content">
         <h1>Appointments</h1>
-        <table className="appointments-table">
+        
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '20px' }}>
+            <p>Loading appointments...</p>
+          </div>
+        ) : error ? (
+          <div style={{ textAlign: 'center', padding: '20px', color: 'red' }}>
+            <p>{error}</p>
+          </div>
+        ) : appointments.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '20px' }}>
+            <p>No appointments found.</p>
+          </div>
+        ) : (
+          <table className="appointments-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -37,8 +77,9 @@ const DoctorAppointments = () => {
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
+                      </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
