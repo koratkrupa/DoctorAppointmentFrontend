@@ -45,7 +45,7 @@ const DoctorDetailsForm = () => {
       if (res.ok) {
         alert("✅ Doctor details submitted successfully!");
         console.log(result);
-        navigate("/doctor-dashboard")
+        navigate("/doctor/dashboard")
       } else {
         alert(result.message || "❌ Failed to submit details");
       }

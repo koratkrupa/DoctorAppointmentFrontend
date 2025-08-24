@@ -1,31 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { API } from "../config/api";
 import "../styles/patientAppointments.css";
 import PatientSidebar from "../components/PatientSidebar";
 
 const PatientAppointments = () => {
-  const [appointments] = useState([
-    {
-      id: 1,
-      doctor: "Dr. Mehul Shah",
-      date: "2025-08-25",
-      time: "10:30 AM",
-      status: "Confirmed",
-    },
-    {
-      id: 2,
-      doctor: "Dr. Priya Patel",
-      date: "2025-08-28",
-      time: "03:00 PM",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      doctor: "Dr. Arjun Verma",
-      date: "2025-09-02",
-      time: "11:15 AM",
-      status: "Cancelled",
-    },
-  ]);
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Not authenticated");
+      setLoading(false);
+      return;
+    }
+
+    const fetchAppointments = async () => {
+      try {
+        const res = await fetch(API.PATIENT_APPOINTMENTS, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to load appointments");
+
+        setAppointments(data.appointments || []);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
 
   return (
     <div className="dashboard-page">
@@ -33,27 +41,37 @@ const PatientAppointments = () => {
       <div className="appointments-container">
         <h2>My Appointments</h2>
 
-        {appointments.length === 0 ? (
+        {loading ? (
+          <div className="loading-container">
+            <p>Loading appointments...</p>
+          </div>
+        ) : error ? (
+          <div className="error-container">
+            <p>{error}</p>
+          </div>
+        ) : appointments.length === 0 ? (
           <p className="no-appointments">No appointments found.</p>
         ) : (
           <table className="appointments-table">
             <thead>
               <tr>
-                <th>Doctor</th>
+                <th>Specialization</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Status</th>
+                <th>Fees</th>
               </tr>
             </thead>
             <tbody>
               {appointments.map((appt) => (
                 <tr key={appt.id}>
-                  <td>{appt.doctor}</td>
+                  <td>{appt.specialization}</td>
                   <td>{appt.date}</td>
                   <td>{appt.time}</td>
-                  <td className={`status ${appt.status.toLowerCase()}`}>
+                  <td className={`status status-${appt.status.toLowerCase()}`}>
                     {appt.status}
                   </td>
+                  <td>₹{appt.fees}</td>
                 </tr>
               ))}
             </tbody>

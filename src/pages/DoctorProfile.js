@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/DoctorSidebar";
 import "../styles/doctorProfile.css";
-import doctorImg from "../assets/p1.jpg";
+// Removed default image import
 import { API } from "../config/api";
 const BACKEND_URL = "http://localhost:5000";
 
@@ -20,7 +20,7 @@ const DoctorProfile = () => {
     email: "",
     phone: "",
     address: "",
-    profilePic: doctorImg
+    profilePic: ""
   });
 
   useEffect(() => {
@@ -42,9 +42,11 @@ const DoctorProfile = () => {
           experience: String(data?.doctor?.experience ?? ""),
           fees: String(data?.doctor?.fees ?? ""),
           email: data?.doctor?.email || "",
+          phone: data?.doctor?.phone || "",
+          address: data?.doctor?.address || "",
           profilePic: data?.doctor?.profile_pic 
             ? `${BACKEND_URL}${data.doctor.profile_pic}` 
-            : doctorImg,
+            : "",
         }));
       } catch (e) {
         // show minimal error, keep defaults
@@ -111,7 +113,13 @@ const DoctorProfile = () => {
       <div className="profile-container">
         {/* Left profile card */}
         <div className="profile-card">
-          <img src={doctor.profilePic} alt="Doctor" className="profile-pic" />
+          {doctor.profilePic ? (
+            <img src={doctor.profilePic} alt="Doctor" className="profile-pic" />
+          ) : (
+            <div className="profile-pic-placeholder">
+              <span>No Photo</span>
+            </div>
+          )}
           {edit ? (
             <>
               <input
@@ -190,6 +198,19 @@ const DoctorProfile = () => {
               />
             ) : (
               <p>{doctor.phone}</p>
+            )}
+          </div>
+          <div className="detail-row">
+            <span>Address:</span>
+            {edit ? (
+              <textarea
+                name="address"
+                value={doctor.address}
+                onChange={handleChange}
+                rows="3"
+              />
+            ) : (
+              <p>{doctor.address}</p>
             )}
           </div>
           <div className="detail-row">

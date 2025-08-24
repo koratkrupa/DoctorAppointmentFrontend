@@ -24,6 +24,30 @@ const Home = () => {
     navigate(`/doctors?search=${encodeURIComponent(symptom)}`);
   };
 
+  const handleBookNow = (service) => {
+    // Check if user is logged in and is a patient
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    
+    if (!token) {
+      alert("Please login to book appointments");
+      navigate("/login");
+      return;
+    }
+    
+    if (role !== "Patient") {
+      alert("Only patients can book appointments");
+      return;
+    }
+    
+    // Navigate to doctors listing for the specific service
+    if (service === "appointment" || service === "consultation") {
+      navigate("/doctors");
+    } else if (service === "labtest") {
+      alert("Lab test booking feature coming soon!");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -41,17 +65,17 @@ const Home = () => {
       <div className="home-cards">
         <div className="card">
           <p>Book Appointment</p>
-          <button className="book-btn">Book Now</button>
+          <button className="book-btn" onClick={() => handleBookNow("appointment")}>Book Now</button>
         </div>
 
         <div className="card">
           <p>Online Doctor Consultation</p>
-          <button className="book-btn">Book Now</button>
+          <button className="book-btn" onClick={() => handleBookNow("consultation")}>Book Now</button>
         </div>
 
         <div className="card">
           <p>Book Lab Test</p>
-          <button className="book-btn">Book Now</button>
+          <button className="book-btn" onClick={() => handleBookNow("labtest")}>Book Now</button>
         </div>
       </div>
       {/* Specialities */}

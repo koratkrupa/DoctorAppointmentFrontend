@@ -16,11 +16,11 @@ const PublicDoctorProfile = () => {
 
   const fetchDoctorDetails = useCallback(async () => {
     try {
-      const res = await fetch(`${API.ALL_DOCTORS}?search=${doctorId}`);
+      const res = await fetch(API.ALL_DOCTORS);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load doctor details");
       
-      const doctorData = data.doctors?.find(d => d.id === doctorId);
+      const doctorData = data.doctors?.find(d => d.id === doctorId || d._id === doctorId);
       if (doctorData) {
         setDoctor(doctorData);
       } else {
@@ -39,6 +39,21 @@ const PublicDoctorProfile = () => {
   }, [fetchDoctorDetails]);
 
   const handleBookAppointment = () => {
+    // Check if user is logged in and is a patient
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    
+    if (!token) {
+      alert("Please login to book an appointment");
+      navigate("/login");
+      return;
+    }
+    
+    if (role !== "Patient") {
+      alert("Only patients can book appointments");
+      return;
+    }
+    
     navigate(`/book-appointment/${doctorId}`);
   };
 
@@ -75,11 +90,11 @@ const PublicDoctorProfile = () => {
         <div className="profile-header">
           <div className="profile-image">
             <img 
-              src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : "/images/doctor-default.png"} 
-              alt={doctor.name}
-              onError={(e) => {
-                e.target.src = "/images/doctor-default.png";
-              }}
+                             src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
+               alt={doctor.name}
+               onError={(e) => {
+                 e.target.style.display = "none";
+               }}
             />
           </div>
           
@@ -118,6 +133,22 @@ const PublicDoctorProfile = () => {
             <div className="specialization-card">
               <h3>{doctor.specialization}</h3>
               <p>Expert in diagnosing and treating {doctor.specialization.toLowerCase()} related conditions and diseases.</p>
+            </div>
+          </div>
+
+          <div className="profile-section">
+            <h2>Contact Information</h2>
+            <div className="contact-card">
+              <div className="contact-item">
+                <h3>Email</h3>
+                <p>{doctor.email}</p>
+              </div>
+              {doctor.phone && (
+                <div className="contact-item">
+                  <h3>Phone</h3>
+                  <p>{doctor.phone}</p>
+                </div>
+              )}
             </div>
           </div>
 

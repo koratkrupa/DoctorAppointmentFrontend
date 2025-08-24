@@ -22,11 +22,11 @@ const BookAppointment = () => {
 
   const fetchDoctorDetails = useCallback(async () => {
     try {
-      const res = await fetch(`${API.ALL_DOCTORS}?search=${doctorId}`);
+      const res = await fetch(API.ALL_DOCTORS);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load doctor details");
       
-      const doctorData = data.doctors?.find(d => d.id === doctorId);
+      const doctorData = data.doctors?.find(d => d.id === doctorId || d._id === doctorId);
       if (doctorData) {
         setDoctor(doctorData);
       } else {
@@ -41,6 +41,23 @@ const BookAppointment = () => {
   }, [doctorId]);
 
   useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    
+    if (!token) {
+      setMessage("Please login to book an appointment");
+      setLoading(false);
+      return;
+    }
+    
+    // Check if user is a patient
+    if (role !== "Patient") {
+      setMessage("Only patients can book appointments");
+      setLoading(false);
+      return;
+    }
+    
     fetchDoctorDetails();
   }, [fetchDoctorDetails]);
 
@@ -111,6 +128,37 @@ const BookAppointment = () => {
     );
   }
 
+  // Check authentication and role
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  
+  if (!token) {
+    return (
+      <>
+        <Header />
+        <div className="error-container">
+          <p>Please login to book an appointment</p>
+          <button onClick={() => navigate("/login")}>Go to Login</button>
+          <button onClick={() => navigate("/doctors")}>Back to Doctors</button>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+  
+  if (role !== "Patient") {
+    return (
+      <>
+        <Header />
+        <div className="error-container">
+          <p>Only patients can book appointments</p>
+          <button onClick={() => navigate("/doctors")}>Back to Doctors</button>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+  
   if (!doctor) {
     return (
       <>
@@ -139,11 +187,11 @@ const BookAppointment = () => {
           <div className="doctor-info-card">
             <div className="doctor-image">
               <img 
-                src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : "/images/doctor-default.png"} 
-                alt={doctor.name}
-                onError={(e) => {
-                  e.target.src = "/images/doctor-default.png";
-                }}
+                               src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
+               alt={doctor.name}
+               onError={(e) => {
+                 e.target.style.display = "none";
+               }}
               />
             </div>
             <div className="doctor-details">
@@ -152,6 +200,7 @@ const BookAppointment = () => {
               <p className="qualification">{doctor.qualification}</p>
               <p className="experience">{doctor.experience} years experience</p>
               <p className="fees">₹{doctor.fees} consultation fee</p>
+              {doctor.phone && <p className="phone">📞 {doctor.phone}</p>}
               <div className="rating">
                 <span>⭐ {doctor.rating}</span>
               </div>

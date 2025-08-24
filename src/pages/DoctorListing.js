@@ -67,6 +67,21 @@ const DoctorListing = () => {
   }, [doctors, searchTerm, selectedSpecialty]);
 
   const handleBookAppointment = (doctorId) => {
+    // Check if user is logged in and is a patient
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    
+    if (!token) {
+      alert("Please login to book an appointment");
+      navigate("/login");
+      return;
+    }
+    
+    if (role !== "Patient") {
+      alert("Only patients can book appointments");
+      return;
+    }
+    
     // Navigate to appointment booking page with doctor ID
     navigate(`/book-appointment/${doctorId}`);
   };
@@ -137,11 +152,11 @@ const DoctorListing = () => {
                 <div key={doctor.id} className="doctor-card">
                   <div className="doctor-image">
                     <img 
-                      src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : "/images/doctor-default.png"} 
-                      alt={doctor.name}
-                      onError={(e) => {
-                        e.target.src = "/images/doctor-default.png";
-                      }}
+                                           src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
+                     alt={doctor.name}
+                     onError={(e) => {
+                       e.target.style.display = "none";
+                     }}
                     />
                   </div>
                   
@@ -151,6 +166,7 @@ const DoctorListing = () => {
                     <p className="qualification">{doctor.qualification}</p>
                     <p className="experience">{doctor.experience} years experience</p>
                     <p className="fees">₹{doctor.fees} consultation fee</p>
+                    {doctor.phone && <p className="phone">📞 {doctor.phone}</p>}
                     
                     <div className="rating">
                       <span>⭐ {doctor.rating}</span>

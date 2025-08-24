@@ -1,3 +1,5 @@
+@import './variables.css';
+
 .dashboard-page {
   display: flex;
   min-height: 100vh;
@@ -60,6 +62,27 @@
 .edit-btn:hover {
   background: var(--color-soft-purple);
   color: #fff;
+}
+
+.save-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #28a745;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-left: 10px;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
+
+.save-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
 }
 
 /* Right details card */

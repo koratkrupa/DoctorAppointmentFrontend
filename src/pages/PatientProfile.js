@@ -1,23 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { API } from "../config/api";
 import "../styles/patientProfile.css";
 import PatientSidebar from "../components/PatientSidebar";
 
 const PatientProfile = () => {
   const [edit, setEdit] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const [patient, setPatient] = useState({
-    name: "Korat Krupa",
-    email: "krupa@gmail.com",
-    phone: "9876543210",
-    address: "Surat, Gujarat",
-    dob: "1999-05-12",
-    gender: "Female",
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    dob: "",
+    gender: "",
     role: "Patient", 
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Not authenticated");
+      setLoading(false);
+      return;
+    }
+
+    const fetchProfile = async () => {
+      try {
+        const res = await fetch(API.PATIENT_PROFILE, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to load profile");
+
+        // Format the date to show only date part (YYYY-MM-DD)
+        const userData = { ...data.user };
+        if (userData.dob) {
+          // Convert to date string and take only the date part
+          userData.dob = new Date(userData.dob).toISOString().split('T')[0];
+        }
+        setPatient(userData);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPatient({ ...patient, [name]: value });
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(API.PATIENT_PROFILE_UPDATE, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: patient.name,
+          phone: patient.phone,
+          address: patient.address,
+          dob: patient.dob,
+          gender: patient.gender,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to update profile");
+
+      setEdit(false);
+      setError("");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -25,24 +93,43 @@ const PatientProfile = () => {
       <div className="profile-container">
         <PatientSidebar/>
         <div className="profile-card">
-          {edit ? (
-            <input
-              type="text"
-              name="name"
-              value={patient.name}
-              onChange={handleChange}
-              className="edit-input"
-            />
+          {loading ? (
+            <>
+              <h2>Loading...</h2>
+              <p className="role-text">Please wait</p>
+            </>
+          ) : error ? (
+            <>
+              <h2>Error</h2>
+              <p className="role-text" style={{ color: '#dc3545' }}>{error}</p>
+            </>
           ) : (
             <>
-              <h2>{patient.name}</h2>
-              <p className="role-text">{patient.role}</p> {/* 👈 Role yaha show hoga */}
+              {edit ? (
+                <input
+                  type="text"
+                  name="name"
+                  value={patient.name}
+                  onChange={handleChange}
+                  className="edit-input"
+                />
+              ) : (
+                <>
+                  <h2>{patient.name}</h2>
+                  <p className="role-text">{patient.role}</p>
+                </>
+              )}
             </>
           )}
 
           <button className="edit-btn" onClick={() => setEdit(!edit)}>
-            {edit ? "Save" : "Edit Profile"}
+            {edit ? "Cancel" : "Edit Profile"}
           </button>
+          {edit && (
+            <button className="save-btn" onClick={handleSave} disabled={saving}>
+              {saving ? "Saving..." : "Save Changes"}
+            </button>
+          )}
         </div>
 
         {/* Right side details */}

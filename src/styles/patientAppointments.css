@@ -81,3 +81,23 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.loading-container p {
+  font-size: 16px;
+  color: var(--color-muted-purple);
+}
+
+.error-container p {
+  color: #dc3545;
+  font-size: 16px;
+}

@@ -126,6 +126,67 @@
   padding: 0 2rem;
 }
 
+/* Contact Card */
+.contact-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  background: #f8f9fa;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.contact-item h3 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1rem;
+  color: var(--color-muted-purple);
+  font-weight: 600;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-dark-purple);
+  font-weight: 600;
+}
+
+.contact-item {
+  background: #f8f9fa;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.contact-item h3 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1rem;
+  color: var(--color-muted-purple);
+  font-weight: 600;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-dark-purple);
+  font-weight: 600;
+}
+
 .profile-section {
   background: white;
   border-radius: 15px;
@@ -277,6 +338,22 @@
   margin-bottom: 1.5rem;
 }
 
+/* Subtle fade-in for sections */
+.profile-section {
+  animation: fadeInUp 0.35s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .rating-number {
   display: block;
   font-size: 3rem;
@@ -345,6 +422,11 @@
     text-align: center;
     gap: 2rem;
     padding: 2rem;
+  }
+  
+  .contact-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .profile-image img {

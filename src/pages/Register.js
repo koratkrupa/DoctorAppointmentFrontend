@@ -52,7 +52,7 @@ const Register = () => {
       if (res.ok) {
         alert(data.message); // ✅ backend se { message: "..."} aa raha hai
         if (formData.role === "Patient") {
-          navigate("/patient-dashboard");
+          navigate("/patient/dashboard");
         } else if (formData.role === "Doctor") {
           navigate("/doctorsd", {state : {userId : data.user._id}});
         }
