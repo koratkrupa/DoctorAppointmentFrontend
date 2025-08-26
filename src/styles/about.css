@@ -63,4 +63,32 @@
   color: var(--color-muted-purple);
 }
 
+.gallery-title {
+  text-align: center;
+  margin: 2rem 0 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-dark-purple);
+}
 
+.hospital-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.hospital-gallery img {
+  width: 100%;
+  height: 200px; /* sabhi images ek hi height me */
+  object-fit: cover; /* crop karke fit karega, distort nahi karega */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(16, 9, 29, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hospital-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(16, 9, 29, 0.2);
+  border: 3px solid var(--color-regular-purple);
+}

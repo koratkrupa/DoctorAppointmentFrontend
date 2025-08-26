@@ -16,8 +16,8 @@ const DoctorListing = () => {
   const [searchParams] = useSearchParams();
 
   const specialities = [
-    "all", "Cardiology", "Dentist", "Dermatology", "Neurology", 
-    "Orthopedics", "Pediatrics", "Psychiatry", "General Medicine"
+    "all", "Cardiology", "Dentist", "Neurology", 
+    "Orthopedics", "General Doctor"
   ];
 
   const fetchDoctors = useCallback(async () => {

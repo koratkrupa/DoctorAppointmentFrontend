@@ -42,6 +42,19 @@ const About = () => {
             </p>
           </div>
         </div>
+
+        {/* Hospital Photos Gallery */}
+        <h2 className="gallery-title">Our Hospital</h2>
+        <div className="hospital-gallery">
+          <img src="/images/about/about1.jpg" alt="Hospital 1" />
+          <img src="/images/about/about2.jpg" alt="Hospital 2" />
+          <img src="/images/about/about3.jpg" alt="Hospital 3" />
+          <img src="/images/about/about4.jpeg" alt="Hospital 4" />
+          <img src="/images/about/about5.jpeg" alt="Hospital 4" />
+          <img src="/images/about/about6.jpg" alt="Hospital 4" />
+          <img src="/images/about/about7.webp" alt="Hospital 4" />
+        </div>
+
       </div>
 
       <Footer />

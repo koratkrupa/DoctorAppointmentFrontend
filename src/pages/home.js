@@ -3,8 +3,22 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -28,18 +42,18 @@ const Home = () => {
     // Check if user is logged in and is a patient
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    
+
     if (!token) {
       alert("Please login to book appointments");
       navigate("/login");
       return;
     }
-    
+
     if (role !== "Patient") {
       alert("Only patients can book appointments");
       return;
     }
-    
+
     // Navigate to doctors listing for the specific service
     if (service === "appointment" || service === "consultation") {
       navigate("/doctors");
@@ -53,14 +67,23 @@ const Home = () => {
       <Header />
       {/* Search bar */}
       <div className="search-bar">
-        <input 
-          type="text" 
-          placeholder="Search doctors by name, specialization, or symptoms..." 
+        <input
+          type="text"
+          placeholder="Search doctors by name, specialization, or symptoms..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
         />
-                 <button onClick={handleSearch} className="search-btn">Search</button>
+        <button onClick={handleSearch} className="search-btn">Search</button>
+      </div>
+
+      {/* Banner Slider */}
+      <div className="banner-slider">
+        <Slider {...sliderSettings}>
+          <div><img src="/images/banner/banner-3.jpeg" alt="Hospital 1" /></div>
+          <div><img src="/images/banner/Banner-1.png" alt="Hospital 2" /></div>
+          <div><img src="/images/banner/banner-2.jpeg" alt="Hospital 3" /></div>
+        </Slider>
       </div>
       <div className="home-cards">
         <div className="card">
@@ -81,24 +104,24 @@ const Home = () => {
       {/* Specialities */}
       <h2>Select a Speciality</h2>
       <div className="specialities">
+        <div className="speciality" onClick={() => handleSpecialtyClick("General Doctor")}>
+          <img src="/images/specialities/generaldoctor.png" alt="Skin Care" />
+          <span>General Doctor</span>
+          <button className="book-btn">Find Doctors</button>
+        </div>
         <div className="speciality" onClick={() => handleSpecialtyClick("Dentist")}>
-          <img src="/images/dentist.png" alt="Dentist" />
+          <img src="/images/specialities/dentist.png" alt="Dentist" />
           <span>Dentist</span>
           <button className="book-btn">Find Doctors</button>
         </div>
         <div className="speciality" onClick={() => handleSpecialtyClick("Cardiology")}>
-          <img src="/images/heart.png" alt="Cardiology" />
+          <img src="/images/specialities/heart.png" alt="Cardiology" />
           <span>Cardiology</span>
           <button className="book-btn">Find Doctors</button>
         </div>
-        <div className="speciality" onClick={() => handleSpecialtyClick("Dermatology")}>
-          <img src="/images/skin.png" alt="Skin Care" />
-          <span>Skin Care</span>
-          <button className="book-btn">Find Doctors</button>
-        </div>
-        <div className="speciality" onClick={() => handleSpecialtyClick("Neurology")}>
-          <img src="/images/neurology.png" alt="Neurology" />
-          <span>Neurology</span>
+        <div className="speciality" onClick={() => handleSpecialtyClick("Orthopedics")}>
+          <img src="/images/specialities/orthopedics.png" alt="Neurology" />
+          <span>Orthopedics</span>
           <button className="book-btn">Find Doctors</button>
         </div>
       </div>

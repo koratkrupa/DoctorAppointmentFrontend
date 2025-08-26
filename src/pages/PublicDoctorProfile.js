@@ -19,7 +19,7 @@ const PublicDoctorProfile = () => {
       const res = await fetch(API.ALL_DOCTORS);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load doctor details");
-      
+
       const doctorData = data.doctors?.find(d => d.id === doctorId || d._id === doctorId);
       if (doctorData) {
         setDoctor(doctorData);
@@ -42,18 +42,18 @@ const PublicDoctorProfile = () => {
     // Check if user is logged in and is a patient
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    
+
     if (!token) {
       alert("Please login to book an appointment");
       navigate("/login");
       return;
     }
-    
+
     if (role !== "Patient") {
       alert("Only patients can book appointments");
       return;
     }
-    
+
     navigate(`/book-appointment/${doctorId}`);
   };
 
@@ -85,19 +85,19 @@ const PublicDoctorProfile = () => {
   return (
     <>
       <Header />
-      
+
       <div className="doctor-profile-container">
         <div className="profile-header">
           <div className="profile-image">
-            <img 
-                             src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
-               alt={doctor.name}
-               onError={(e) => {
-                 e.target.style.display = "none";
-               }}
+            <img
+              src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""}
+              alt={doctor.name}
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
             />
           </div>
-          
+
           <div className="profile-info">
             <h1>Dr. {doctor.name}</h1>
             <p className="specialization">{doctor.specialization}</p>
@@ -107,7 +107,7 @@ const PublicDoctorProfile = () => {
               <span className="experience">{doctor.experience} years experience</span>
             </div>
             <p className="fees">₹{doctor.fees} consultation fee</p>
-            
+
             <div className="profile-actions">
               <button onClick={handleBookAppointment} className="book-appointment-btn">
                 Book Appointment
@@ -123,7 +123,7 @@ const PublicDoctorProfile = () => {
           <div className="profile-section">
             <h2>About Dr. {doctor.name}</h2>
             <p className="about-text">
-              Dr. {doctor.name} is a highly qualified {doctor.specialization} specialist with {doctor.experience} years of experience in providing exceptional healthcare services. 
+              Dr. {doctor.name} is a highly qualified {doctor.specialization} specialist with {doctor.experience} years of experience in providing exceptional healthcare services.
               With a strong educational background and extensive clinical experience, Dr. {doctor.name} is committed to delivering personalized care and treatment to patients.
             </p>
           </div>

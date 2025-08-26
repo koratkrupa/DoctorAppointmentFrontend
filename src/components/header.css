@@ -63,3 +63,32 @@ nav a:hover {
   text-decoration: none;  /* Ensure no underline on hover */
 }
 
+.header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Icon styling */
+.dashboard-icon {
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.dashboard-icon:hover {
+  color: var(--color-lightest);
+}
+
+/* Dashboard button / icon */
+.dashboard-btn {
+  font-size: 26px;
+  color: #fff;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.dashboard-btn:hover {
+  color: var(--color-lightest);
+}
