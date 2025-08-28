@@ -55,6 +55,8 @@ const Register = () => {
           navigate("/patient/dashboard");
         } else if (formData.role === "Doctor") {
           navigate("/doctorsd", {state : {userId : data.user._id}});
+        } else if (formData.role === "Admin") {
+          navigate("/admin/dashboard");
         }
       } else {
         alert(data.message || "❌ Registration failed");

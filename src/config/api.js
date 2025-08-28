@@ -13,5 +13,18 @@ export const API = {
   PATIENT_DASHBOARD: `${BASE_URL}/user/dashboard`,
   PATIENT_APPOINTMENTS: `${BASE_URL}/user/appointments`,
   PATIENT_PROFILE: `${BASE_URL}/user/profile`,
-  PATIENT_PROFILE_UPDATE: `${BASE_URL}/user/profile`
+  PATIENT_PROFILE_UPDATE: `${BASE_URL}/user/profile`,
+  // Admin APIs
+  ADMIN_DASHBOARD: `${BASE_URL}/admin/dashboard`,
+  ADMIN_APPOINTMENTS: `${BASE_URL}/admin/appointments`,
+  ADMIN_UPDATE_APPOINTMENT_STATUS: `${BASE_URL}/admin/appointments`,
+  ADMIN_DELETE_APPOINTMENT: `${BASE_URL}/admin/appointments`,
+  ADMIN_USERS: `${BASE_URL}/admin/users`,
+  ADMIN_DELETE_USER: `${BASE_URL}/admin/users`,
+  ADMIN_DOCTORS: `${BASE_URL}/admin/doctors`,
+  ADMIN_CREATE: `${BASE_URL}/admin/create`,
+  ADMIN_LIST: `${BASE_URL}/admin/list`,
+  ADMIN_UPDATE_PERMISSIONS: `${BASE_URL}/admin/permissions`,
+  ADMIN_DELETE: `${BASE_URL}/admin`,
+  ADMIN_MARK_EXPIRED: `${BASE_URL}/admin/mark-expired`
 };

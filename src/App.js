@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import DoctorListing from "./pages/DoctorListing";
 import BookAppointment from "./pages/BookAppointment";
 import PublicDoctorProfile from "./pages/PublicDoctorProfile";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/doctors" element={<DoctorListing/>} />
         <Route path="/book-appointment/:doctorId" element={<BookAppointment/>} />
         <Route path="/doctor-profile/:doctorId" element={<PublicDoctorProfile/>} />
+        <Route path="/admin/dashboard" element={<AdminDashboard/>} />
 
       </Routes>
     </Router>
