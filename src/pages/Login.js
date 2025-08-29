@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "../styles/login.css"; // your existing CSS
 import "../styles/variables.css";
-import {API} from "../config/api";
+import { API } from "../config/api";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

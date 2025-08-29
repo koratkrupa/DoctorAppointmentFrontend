@@ -16,7 +16,7 @@ const PatientProfile = () => {
     address: "",
     dob: "",
     gender: "",
-    role: "Patient", 
+    role: "Patient",
   });
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const PatientProfile = () => {
   return (
     <div className="dashboard-page">
       <div className="profile-container">
-        <PatientSidebar/>
+        <PatientSidebar />
         <div className="profile-card">
           {loading ? (
             <>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/variables.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { API } from "../config/api";
 
 const Register = () => {
@@ -54,7 +54,7 @@ const Register = () => {
         if (formData.role === "Patient") {
           navigate("/patient/dashboard");
         } else if (formData.role === "Doctor") {
-          navigate("/doctorsd", {state : {userId : data.user._id}});
+          navigate("/doctorsd", { state: { userId: data.user._id } });
         } else if (formData.role === "Admin") {
           navigate("/admin/dashboard");
         }

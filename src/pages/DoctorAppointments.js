@@ -41,7 +41,7 @@ const DoctorAppointments = () => {
       <Sidebar />
       <div className="appointments-content">
         <h1>Appointments</h1>
-        
+
         {loading ? (
           <div style={{ textAlign: 'center', padding: '20px' }}>
             <p>Loading appointments...</p>
@@ -56,28 +56,28 @@ const DoctorAppointments = () => {
           </div>
         ) : (
           <table className="appointments-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Patient</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map((appt) => (
-              <tr key={appt.id}>
-                <td>{appt.id}</td>
-                <td>{appt.patient}</td>
-                <td>{appt.date}</td>
-                <td>{appt.time}</td>
-                <td className={`status ${appt.status.toLowerCase()}`}>
-                  {appt.status}
-                </td>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
               </tr>
-            ))}
-                      </tbody>
+            </thead>
+            <tbody>
+              {appointments.map((appt) => (
+                <tr key={appt.id}>
+                  <td>{appt.id}</td>
+                  <td>{appt.patient}</td>
+                  <td>{appt.date}</td>
+                  <td>{appt.time}</td>
+                  <td className={`status ${appt.status.toLowerCase()}`}>
+                    {appt.status}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         )}
       </div>

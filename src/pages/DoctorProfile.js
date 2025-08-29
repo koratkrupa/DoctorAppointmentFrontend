@@ -44,8 +44,8 @@ const DoctorProfile = () => {
           email: data?.doctor?.email || "",
           phone: data?.doctor?.phone || "",
           address: data?.doctor?.address || "",
-          profilePic: data?.doctor?.profile_pic 
-            ? `${BACKEND_URL}${data.doctor.profile_pic}` 
+          profilePic: data?.doctor?.profile_pic
+            ? `${BACKEND_URL}${data.doctor.profile_pic}`
             : "",
         }));
       } catch (e) {

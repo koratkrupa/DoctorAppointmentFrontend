@@ -16,7 +16,7 @@ const DoctorListing = () => {
   const [searchParams] = useSearchParams();
 
   const specialities = [
-    "all", "Cardiology", "Dentist", "Neurology", 
+    "all", "Cardiology", "Dentist", "Neurology",
     "Orthopedics", "General Doctor"
   ];
 
@@ -25,7 +25,7 @@ const DoctorListing = () => {
       const res = await fetch(API.ALL_DOCTORS);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load doctors");
-      
+
       setDoctors(data.doctors || []);
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -36,11 +36,11 @@ const DoctorListing = () => {
 
   useEffect(() => {
     fetchDoctors();
-    
+
     // Handle URL parameters
     const urlSearch = searchParams.get('search');
     const urlSpecialization = searchParams.get('specialization');
-    
+
     if (urlSearch) setSearchTerm(urlSearch);
     if (urlSpecialization) setSelectedSpecialty(urlSpecialization);
   }, [searchParams, fetchDoctors]);
@@ -48,13 +48,13 @@ const DoctorListing = () => {
   useEffect(() => {
     // Filter doctors based on search and specialty
     let filtered = doctors;
-    
+
     if (selectedSpecialty !== "all") {
-      filtered = filtered.filter(doctor => 
+      filtered = filtered.filter(doctor =>
         doctor.specialization?.toLowerCase().includes(selectedSpecialty.toLowerCase())
       );
     }
-    
+
     if (searchTerm) {
       filtered = filtered.filter(doctor =>
         doctor.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -62,7 +62,7 @@ const DoctorListing = () => {
         doctor.qualification?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     setFilteredDoctors(filtered);
   }, [doctors, searchTerm, selectedSpecialty]);
 
@@ -70,18 +70,18 @@ const DoctorListing = () => {
     // Check if user is logged in and is a patient
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    
+
     if (!token) {
       alert("Please login to book an appointment");
       navigate("/login");
       return;
     }
-    
+
     if (role !== "Patient") {
       alert("Only patients can book appointments");
       return;
     }
-    
+
     // Navigate to appointment booking page with doctor ID
     navigate(`/book-appointment/${doctorId}`);
   };
@@ -96,7 +96,7 @@ const DoctorListing = () => {
   return (
     <>
       <Header />
-      
+
       <div className="doctor-listing-container">
         {/* Search and Filter Section */}
         <div className="search-filter-section">
@@ -107,13 +107,13 @@ const DoctorListing = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-                         <button className="search-btn">Search</button>
+            <button className="search-btn">Search</button>
           </div>
-          
+
           <div className="filter-section">
             <label>Filter by Speciality:</label>
-            <select 
-              value={selectedSpecialty} 
+            <select
+              value={selectedSpecialty}
               onChange={(e) => setSelectedSpecialty(e.target.value)}
             >
               {specialities.map(specialty => (
@@ -151,15 +151,15 @@ const DoctorListing = () => {
               filteredDoctors.map((doctor) => (
                 <div key={doctor.id} className="doctor-card">
                   <div className="doctor-image">
-                    <img 
-                                           src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
-                     alt={doctor.name}
-                     onError={(e) => {
-                       e.target.style.display = "none";
-                     }}
+                    <img
+                      src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""}
+                      alt={doctor.name}
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
                     />
                   </div>
-                  
+
                   <div className="doctor-info">
                     <h3>{doctor.name}</h3>
                     <p className="specialization">{doctor.specialization}</p>
@@ -167,21 +167,21 @@ const DoctorListing = () => {
                     <p className="experience">{doctor.experience} years experience</p>
                     <p className="fees">₹{doctor.fees} consultation fee</p>
                     {doctor.phone && <p className="phone">📞 {doctor.phone}</p>}
-                    
+
                     <div className="rating">
                       <span>⭐ {doctor.rating}</span>
                       <span className="available">Available</span>
                     </div>
                   </div>
-                  
+
                   <div className="doctor-actions">
-                    <button 
+                    <button
                       className="book-appointment-btn"
                       onClick={() => handleBookAppointment(doctor.id)}
                     >
                       Book Appointment
                     </button>
-                    <button 
+                    <button
                       className="view-profile-btn"
                       onClick={() => handleViewProfile(doctor.id)}
                     >

@@ -37,7 +37,7 @@ const PatientAppointments = () => {
 
   return (
     <div className="dashboard-page">
-      <PatientSidebar/>
+      <PatientSidebar />
       <div className="appointments-container">
         <h2>My Appointments</h2>
 

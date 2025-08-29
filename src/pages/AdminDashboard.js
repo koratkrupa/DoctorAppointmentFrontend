@@ -228,15 +228,15 @@ const AdminDashboard = () => {
               </tr>
             </thead>
             <tbody>
-                          {appointments && appointments.length > 0 ? appointments.map(appointment => (
-              <tr key={appointment.id}>
-                <td>{appointment.date || "N/A"}</td>
-                <td>{appointment.time || "N/A"}</td>
-                <td>{appointment.patient?.name || "Unknown"}</td>
-                <td>{appointment.doctor?.name || "Unknown"}</td>
+              {appointments && appointments.length > 0 ? appointments.map(appointment => (
+                <tr key={appointment.id}>
+                  <td>{appointment.date || "N/A"}</td>
+                  <td>{appointment.time || "N/A"}</td>
+                  <td>{appointment.patient?.name || "Unknown"}</td>
+                  <td>{appointment.doctor?.name || "Unknown"}</td>
                   <td>
-                    <span 
-                      className="status-badge" 
+                    <span
+                      className="status-badge"
                       style={{ backgroundColor: getStatusColor(appointment.status) }}
                     >
                       {appointment.status}
@@ -303,7 +303,7 @@ const AdminDashboard = () => {
     <div className="admin-appointments">
       <div className="appointments-header">
         <h2>Manage Appointments</h2>
-        <button 
+        <button
           onClick={markExpiredAppointments}
           className="mark-expired-btn"
         >
@@ -344,7 +344,7 @@ const AdminDashboard = () => {
                   </div>
                 </td>
                 <td>
-                  <select 
+                  <select
                     value={appointment.status}
                     onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)}
                     className="status-select"
@@ -358,7 +358,7 @@ const AdminDashboard = () => {
                   </select>
                 </td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => deleteAppointment(appointment.id)}
                     className="delete-btn"
                   >
@@ -403,7 +403,7 @@ const AdminDashboard = () => {
                 <td>{user.address}</td>
                 <td>{user.dob}</td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => deleteUser(user.id)}
                     className="delete-btn"
                   >
@@ -465,25 +465,25 @@ const AdminDashboard = () => {
       <div className="admin-sidebar">
         <h3>Admin Panel</h3>
         <nav>
-          <button 
+          <button
             className={activeTab === 'dashboard' ? 'active' : ''}
             onClick={() => setActiveTab('dashboard')}
           >
             Dashboard
           </button>
-          <button 
+          <button
             className={activeTab === 'appointments' ? 'active' : ''}
             onClick={() => setActiveTab('appointments')}
           >
             Appointments
           </button>
-          <button 
+          <button
             className={activeTab === 'users' ? 'active' : ''}
             onClick={() => setActiveTab('users')}
           >
             Users
           </button>
-          <button 
+          <button
             className={activeTab === 'doctors' ? 'active' : ''}
             onClick={() => setActiveTab('doctors')}
           >

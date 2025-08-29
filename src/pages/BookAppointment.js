@@ -25,7 +25,7 @@ const BookAppointment = () => {
       const res = await fetch(API.ALL_DOCTORS);
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load doctor details");
-      
+
       const doctorData = data.doctors?.find(d => d.id === doctorId || d._id === doctorId);
       if (doctorData) {
         setDoctor(doctorData);
@@ -44,20 +44,20 @@ const BookAppointment = () => {
     // Check if user is logged in
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-    
+
     if (!token) {
       setMessage("Please login to book an appointment");
       setLoading(false);
       return;
     }
-    
+
     // Check if user is a patient
     if (role !== "Patient") {
       setMessage("Only patients can book appointments");
       setLoading(false);
       return;
     }
-    
+
     fetchDoctorDetails();
   }, [fetchDoctorDetails]);
 
@@ -70,7 +70,7 @@ const BookAppointment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.date || !formData.time) {
       setMessage("Please select date and time");
       return;
@@ -101,7 +101,7 @@ const BookAppointment = () => {
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         setMessage("Appointment booked successfully!");
         setTimeout(() => {
@@ -131,7 +131,7 @@ const BookAppointment = () => {
   // Check authentication and role
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
-  
+
   if (!token) {
     return (
       <>
@@ -145,7 +145,7 @@ const BookAppointment = () => {
       </>
     );
   }
-  
+
   if (role !== "Patient") {
     return (
       <>
@@ -158,7 +158,7 @@ const BookAppointment = () => {
       </>
     );
   }
-  
+
   if (!doctor) {
     return (
       <>
@@ -175,7 +175,7 @@ const BookAppointment = () => {
   return (
     <>
       <Header />
-      
+
       <div className="book-appointment-container">
         <div className="appointment-header">
           <h1>Book Appointment</h1>
@@ -186,12 +186,12 @@ const BookAppointment = () => {
           {/* Doctor Info Card */}
           <div className="doctor-info-card">
             <div className="doctor-image">
-              <img 
-                               src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""} 
-               alt={doctor.name}
-               onError={(e) => {
-                 e.target.style.display = "none";
-               }}
+              <img
+                src={doctor.profile_pic ? `${BACKEND_URL}${doctor.profile_pic}` : ""}
+                alt={doctor.name}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
               />
             </div>
             <div className="doctor-details">
@@ -210,7 +210,7 @@ const BookAppointment = () => {
           {/* Appointment Form */}
           <div className="appointment-form">
             <h2>Appointment Details</h2>
-            
+
             {message && (
               <div className={`message ${message.includes("successfully") ? "success" : "error"}`}>
                 {message}
