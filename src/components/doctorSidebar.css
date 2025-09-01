@@ -1,7 +1,7 @@
 @import '../styles/variables.css';
 
-.sidebar {
-  width: 240px;
+.doctor-sidebar {
+  width: 260px;
   height: 100vh;
   background: linear-gradient(180deg, var(--color-regular-purple), var(--color-dark-purple));
   color: #fff;
@@ -14,7 +14,7 @@
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
 }
 
-.logo {
+.doctor-sidebar .logo {
   font-size: 22px;
   font-weight: 700;
   text-align: center;
@@ -22,18 +22,18 @@
   color: #fff;
 }
 
-.menu {
+.doctor-sidebar .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   flex-grow: 1;
 }
 
-.menu li {
+.doctor-sidebar .menu li {
   margin-bottom: 18px;
 }
 
-.menu li a {
+.doctor-sidebar .menu li a {
   text-decoration: none;
   color: #fff;
   font-size: 16px;
@@ -44,15 +44,15 @@
   transition: all 0.3s ease;
 }
 
-.menu li a:hover,
-.menu li a.active {
+.doctor-sidebar .menu li a:hover,
+.doctor-sidebar .menu li a.active {
   background-color: var(--color-soft-purple);
   color: var(--color-nearly-black);
   transform: translateX(5px);
 }
 
 /* Logout button style */
-.logout-btn {
+.doctor-sidebar .logout-btn {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
   border: none;
@@ -66,7 +66,7 @@
   text-align: center;
 }
 
-.logout-btn:hover {
+.doctor-sidebar .logout-btn:hover {
   background: #fff;
   color: var(--color-dark-purple);
   transform: translateX(5px);

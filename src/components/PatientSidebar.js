@@ -18,13 +18,13 @@ const PatientSidebar = () => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="patient-sidebar">
       <div className="sidebar-menu">
         <h2>Patient Panel</h2>
         <ul>
           <li>
             <NavLink to="/" activeClassName="active">
-              🏠 Home
+              Home
             </NavLink>
           </li>
           <li>

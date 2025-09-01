@@ -17,6 +17,9 @@ import DoctorListing from "./pages/DoctorListing";
 import BookAppointment from "./pages/BookAppointment";
 import PublicDoctorProfile from "./pages/PublicDoctorProfile";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminAppointments from "./pages/AdminAppointments";
+import AdminUsers from "./pages/AdminUsers";
+import AdminDoctors from "./pages/AdminDoctors";
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
         <Route path="/book-appointment/:doctorId" element={<BookAppointment/>} />
         <Route path="/doctor-profile/:doctorId" element={<PublicDoctorProfile/>} />
         <Route path="/admin/dashboard" element={<AdminDashboard/>} />
+        <Route path="/admin/appointments" element={<AdminAppointments/>} />
+        <Route path="/admin/users" element={<AdminUsers/>} />
+        <Route path="/admin/doctors" element={<AdminDoctors/>} />
 
       </Routes>
     </Router>

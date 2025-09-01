@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/variables.css";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { API } from "../config/api";
 
 const Register = () => {
@@ -51,12 +51,40 @@ const Register = () => {
       const data = await res.json();
       if (res.ok) {
         alert(data.message); // ✅ backend se { message: "..."} aa raha hai
-        if (formData.role === "Patient") {
+        
+        // For Admin registration, automatically login and redirect
+        if (formData.role === "Admin") {
+          // Auto-login after successful admin registration
+          try {
+            const loginRes = await fetch(API.LOGIN, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: formData.email,
+                password: formData.password
+              }),
+            });
+            
+            const loginData = await loginRes.json();
+            if (loginRes.ok) {
+              // Save token and role
+              localStorage.setItem("token", loginData.token);
+              localStorage.setItem("role", loginData.user.role);
+              navigate("/admin/dashboard");
+            } else {
+              // If auto-login fails, redirect to login page
+              alert("Registration successful! Please login to continue.");
+              navigate("/login");
+            }
+          } catch (loginError) {
+            console.error("Auto-login error:", loginError);
+            alert("Registration successful! Please login to continue.");
+            navigate("/login");
+          }
+        } else if (formData.role === "Patient") {
           navigate("/patient/dashboard");
         } else if (formData.role === "Doctor") {
-          navigate("/doctorsd", { state: { userId: data.user._id } });
-        } else if (formData.role === "Admin") {
-          navigate("/admin/dashboard");
+          navigate("/doctorsd", {state : {userId : data.user._id}});
         }
       } else {
         alert(data.message || "❌ Registration failed");

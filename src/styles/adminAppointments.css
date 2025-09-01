@@ -1,0 +1,208 @@
+@import './variables.css';
+
+/* Page Layout */
+.dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-lightest);
+  font-family: var(--font-main);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  margin-left: 260px; /* Sidebar width */
+  background: #f8f9fb;
+}
+
+/* Header */
+.appointments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.appointments-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-dark-purple);
+}
+
+.mark-expired-btn {
+  background: var(--color-regular-purple);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mark-expired-btn:hover {
+  background: var(--color-dark-purple);
+  transform: translateY(-2px);
+}
+
+/* Message */
+.message {
+  background: var(--color-soft-purple);
+  color: var(--color-nearly-black);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message button {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--color-nearly-black);
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-dark-purple);
+  margin: 20px 0;
+}
+
+/* Table */
+.appointments-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+.appointments-table thead {
+  background: var(--color-muted-purple);
+  color: #fff;
+}
+
+.appointments-table th {
+  padding: 14px;
+  text-align: left;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.appointments-table td {
+  background: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  vertical-align: top;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.appointments-table tr:hover td {
+  background: var(--color-lightest);
+  transform: scale(1.01);
+}
+
+/* Status Dropdown */
+.status-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.status-select:hover {
+  border-color: var(--color-regular-purple);
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 90px;
+}
+
+.status-pending { background: #fff3cd; color: #856404; }
+.status-confirmed { background: #d4edda; color: #155724; }
+.status-completed { background: #cce5ff; color: #004085; }
+.status-cancelled { background: #f8d7da; color: #721c24; }
+.status-rejected, 
+.status-expired { background: #e2e3e5; color: #383d41; }
+
+/* Delete Button */
+.delete-btn {
+  background: var(--color-dark-purple);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: var(--color-deep-purple);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .appointments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .appointments-table table,
+  .appointments-table thead,
+  .appointments-table tbody,
+  .appointments-table th,
+  .appointments-table td,
+  .appointments-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .appointments-table thead {
+    display: none;
+  }
+
+  .appointments-table tr {
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 10px;
+  }
+
+  .appointments-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+  }
+
+  .appointments-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-dark-purple);
+  }
+}
