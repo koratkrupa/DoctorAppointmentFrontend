@@ -23,6 +23,7 @@ const AdminDashboard = () => {
       });
       const data = await response.json();
       if (response.ok) {
+        // console.log('Dashboard data received:', data); // Debug log
         setStats(data.stats);
         setAdminInfo(data.admin || {});
         setAppointments(data.recentAppointments || []);
@@ -142,8 +143,8 @@ const AdminDashboard = () => {
                     <tr key={appointment.id}>
                       <td>{appointment.date || "N/A"}</td>
                       <td>{appointment.time || "N/A"}</td>
-                      <td>{appointment.patient?.name || "Unknown"}</td>
-                      <td>{appointment.doctor?.name || "Unknown"}</td>
+                      <td>{appointment.patient || "Unknown"}</td>
+                      <td>{appointment.doctor || "Unknown"}</td>
                       <td>
                         <span
                           className="status-badge"

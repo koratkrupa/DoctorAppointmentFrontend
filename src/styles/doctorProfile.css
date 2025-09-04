@@ -144,3 +144,7 @@
     width: 100%;
   }
 }
+
+.profile-card input{
+  margin-top: 10px;
+}

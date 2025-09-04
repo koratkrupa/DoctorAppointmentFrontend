@@ -1,7 +1,7 @@
 @import '../styles/variables.css';
 
 .doctor-sidebar {
-  width: 260px;
+  width: 230px;
   height: 100vh;
   background: linear-gradient(180deg, var(--color-regular-purple), var(--color-dark-purple));
   color: #fff;

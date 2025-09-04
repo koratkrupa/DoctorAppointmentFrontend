@@ -108,7 +108,7 @@ const DoctorProfile = () => {
   };
 
   return (
-    <div className="dashboard-page">
+    <div className="profile-page">
       <Sidebar />
       <div className="profile-container">
         {/* Left profile card */}

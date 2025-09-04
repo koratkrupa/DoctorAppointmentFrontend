@@ -25,6 +25,7 @@ const AdminAppointments = () => {
       });
       const data = await response.json();
       if (response.ok) {
+        console.log('Fetched appointments data:', data); // Debug log
         setAppointments(data.appointments || []);
       } else {
         setMessage(data.message || 'Error fetching appointments');
@@ -118,7 +119,7 @@ const AdminAppointments = () => {
       <AdminSidebar />
       <div className="dashboard-content">
         {message && (
-          <div className="message">
+          <div className={`message ${message.includes('successfully') ? 'success' : message.includes('Error') ? 'error' : 'info'}`}>
             {message}
             <button onClick={() => setMessage('')}>×</button>
           </div>
@@ -164,9 +165,21 @@ const AdminAppointments = () => {
                     </td>
                     <td>
                       <div>
-                        <strong>{appointment.doctor.name}</strong>
+                        <strong>{appointment.doctor?.name || 'Unknown Doctor'}</strong>
                         <br />
-                        <small>{appointment.doctor.specialization}</small>
+                        <small>{appointment.doctor?.specialization || 'No specialization'}</small>
+                        {appointment.doctor?.email && (
+                          <>
+                            <br />
+                            <small>{appointment.doctor.email}</small>
+                          </>
+                        )}
+                        {appointment.doctor?.phone && (
+                          <>
+                            <br />
+                            <small>{appointment.doctor.phone}</small>
+                          </>
+                        )}
                       </div>
                     </td>
                     <td>
@@ -194,7 +207,7 @@ const AdminAppointments = () => {
                   </tr>
                 )) : (
                   <tr>
-                    <td colSpan="6" style={{ textAlign: 'center' }}>No appointments found</td>
+                    <td colSpan="6" className="no-appointments">No appointments found</td>
                   </tr>
                 )}
               </tbody>

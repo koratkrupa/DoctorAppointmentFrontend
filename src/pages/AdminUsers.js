@@ -73,8 +73,8 @@ const AdminUsers = () => {
 
         <div className="admin-users">
           <h2>All Users</h2>
-          <div className="users-table">
-            <table>
+          <div className="users-table-container">
+            <table className="users-table">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -96,17 +96,19 @@ const AdminUsers = () => {
                     <td>{user.address}</td>
                     <td>{user.dob}</td>
                     <td>
-                      <button
-                        onClick={() => deleteUser(user.id)}
-                        className="delete-btn"
-                      >
-                        Delete
-                      </button>
+                      <div className="user-actions">
+                        <button
+                          onClick={() => deleteUser(user.id)}
+                          className="btn btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 )) : (
                   <tr>
-                    <td colSpan="7" style={{ textAlign: 'center' }}>No users found</td>
+                    <td colSpan="7" className="no-users">No users found</td>
                   </tr>
                 )}
               </tbody>
