@@ -129,18 +129,18 @@ const Home = () => {
       {/* Symptoms */}
       <h2>Symptoms</h2>
       <div className="symptoms">
-        <div className="symptom" onClick={() => handleSymptomClick("Fever")}>
-          <img src="/images/fever.png" alt="Fever" />
+        <div className="symptom" onClick={() => handleSymptomClick("General Doctor")}>
+          <img src="/images/symptoms/fever.png" alt="Fever" />
           <span>Fever</span>
           <button className="book-btn">Find Doctors</button>
         </div>
-        <div className="symptom" onClick={() => handleSymptomClick("Cough")}>
-          <img src="/images/cough.png" alt="Cough" />
+        <div className="symptom" onClick={() => handleSymptomClick("General Doctor")}>
+          <img src="/images/symptoms/cough.png" alt="Cough" />
           <span>Cough</span>
           <button className="book-btn">Find Doctors</button>
         </div>
-        <div className="symptom" onClick={() => handleSymptomClick("Headache")}>
-          <img src="/images/headache.png" alt="Headache" />
+        <div className="symptom" onClick={() => handleSymptomClick("General Doctor")}>
+          <img src="/images/symptoms/headache.png" alt="Headache" />
           <span>Headache</span>
           <button className="book-btn">Find Doctors</button>
         </div>
