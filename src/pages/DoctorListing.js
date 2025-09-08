@@ -1,7 +1,7 @@
 // src/pages/DoctorListing.js
 import React, { useState, useEffect, useCallback } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { API } from "../config/api";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "../styles/doctorListing.css";
