@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/register.css";
 import "../styles/variables.css";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import { API } from "../config/api";
 
 const Register = () => {
@@ -135,7 +135,7 @@ const Register = () => {
         </button>
 
         <div className="login-redirect">
-          Already have an account? <a href="/login">Login here</a>
+          Already have an account? <Link to="/login">Login here</Link>
         </div>
       </form>
     </div>

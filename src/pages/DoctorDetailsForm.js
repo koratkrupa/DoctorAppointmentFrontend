@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/doctorDetailsForm.css";
 import "../styles/variables.css";
 import { API } from "../config/api";
-import { useNavigate } from "react-router-dom";
 
 const DoctorDetailsForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const userId = location.state?.userId || "";  // 👈 yaha userId milega
+  const userId = location.state?.userId || "";  //  yaha userId milega
 
   const [formData, setFormData] = useState({
     userId,
