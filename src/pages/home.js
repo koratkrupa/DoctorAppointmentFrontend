@@ -130,12 +130,12 @@ const Home = () => {
       <h2>Symptoms</h2>
       <div className="symptoms">
         <div className="symptom" onClick={() => handleSymptomClick("General Doctor")}>
-          <img src="/images/symptoms/Fever.png" alt="Fever" />
+          <img src="/images/symptoms/fever.png" alt="Fever" />
           <span>Fever</span>
           <button className="book-btn">Find Doctors</button>
         </div>
         <div className="symptom" onClick={() => handleSymptomClick("General Doctor")}>
-          <img src="/images/symptoms/Cough.png" alt="Cough" />
+          <img src="/images/symptoms/cough.png" alt="Cough" />
           <span>Cough</span>
           <button className="book-btn">Find Doctors</button>
         </div>
