@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import "./patientSidebar.css";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import "../styles/about.css";
 
 const About = () => {
   return (
