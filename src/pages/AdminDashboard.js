@@ -79,7 +79,7 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading">Please wait, loading dashboard...</div>}
 
         <div className="admin-dashboard">
           <div className="dashboard-header">
@@ -96,7 +96,7 @@ const AdminDashboard = () => {
 
           <div className="stats-grid">
             <div className="stat-card">
-              <h3>Total Users</h3>
+              <h3>Total Patients</h3>
               <p className="stat-number">{stats.totalUsers || 0}</p>
             </div>
             <div className="stat-card">

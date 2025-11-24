@@ -18,7 +18,7 @@ import BookAppointment from "./pages/BookAppointment";
 import PublicDoctorProfile from "./pages/PublicDoctorProfile";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminAppointments from "./pages/AdminAppointments";
-import AdminUsers from "./pages/AdminUsers";
+import AdminPatients from "./pages/AdminPatients";
 import AdminDoctors from "./pages/AdminDoctors";
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
         <Route path="/doctor-profile/:doctorId" element={<PublicDoctorProfile/>} />
         <Route path="/admin/dashboard" element={<AdminDashboard/>} />
         <Route path="/admin/appointments" element={<AdminAppointments/>} />
-        <Route path="/admin/users" element={<AdminUsers/>} />
+        <Route path="/admin/users" element={<AdminPatients/>} />
         <Route path="/admin/doctors" element={<AdminDoctors/>} />
 
       </Routes>

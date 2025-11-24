@@ -69,7 +69,7 @@ const DoctorDashboard = () => {
 
         <div className="stats-cards">
           <div className="card">
-            <h2>Total Patients</h2>
+            <h2>Total Users</h2>
             <p>{totalPatients}</p>
           </div>
           <div className="card">

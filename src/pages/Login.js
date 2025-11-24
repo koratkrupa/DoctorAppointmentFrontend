@@ -71,9 +71,7 @@ const Login = () => {
 
         <button type="submit" className="login-button">
           Login
-        </button>
-        {/* 
-        {message && <p style={{ marginTop: "15px", color: "#B696C5" }}>{message}</p>} */}
+        </button> 
 
         <div className="register-link">
           Don’t have an account? <a href="/register">Register</a>

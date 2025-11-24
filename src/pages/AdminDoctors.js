@@ -47,7 +47,7 @@ const AdminDoctors = () => {
           </div>
         )}
 
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading">Please wait, loading doctors...</div>}
 
         <div className="admin-doctors">
           <h2>All Doctors</h2>
