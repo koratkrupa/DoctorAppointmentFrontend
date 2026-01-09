@@ -20,6 +20,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminAppointments from "./pages/AdminAppointments";
 import AdminPatients from "./pages/AdminPatients";
 import AdminDoctors from "./pages/AdminDoctors";
+import AdminFeedback from "./pages/AdminFeedback";
+import PatientFeedback from "./pages/PatientFeedback";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
         <Route path="/patient/dashboard" element={<PatientDashboard />} />
         <Route path="/patient/profile" element={<PatientProfile />} />
         <Route path="/patient/appointments" element={<PatientAppointments/>} />
+        <Route path="/patient/feedback" element={<PatientFeedback/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/doctors" element={<DoctorListing/>} />
@@ -44,6 +47,7 @@ function App() {
         <Route path="/admin/appointments" element={<AdminAppointments/>} />
         <Route path="/admin/users" element={<AdminPatients/>} />
         <Route path="/admin/doctors" element={<AdminDoctors/>} />
+        <Route path="/admin/feedback" element={<AdminFeedback/>} />
 
       </Routes>
     </Router>

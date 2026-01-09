@@ -14,6 +14,9 @@ export const API = {
   PATIENT_APPOINTMENTS: `${BASE_URL}/user/appointments`,
   PATIENT_PROFILE: `${BASE_URL}/user/profile`,
   PATIENT_PROFILE_UPDATE: `${BASE_URL}/user/profile`,
+  // Feedback APIs
+  SUBMIT_FEEDBACK: `${BASE_URL}/user/feedback`,
+  GET_USER_FEEDBACK: `${BASE_URL}/user/feedback`,
   // Admin APIs
   ADMIN_DASHBOARD: `${BASE_URL}/admin/dashboard`,
   ADMIN_APPOINTMENTS: `${BASE_URL}/admin/appointments`,
@@ -28,5 +31,10 @@ export const API = {
   ADMIN_LIST: `${BASE_URL}/admin/list`,
   ADMIN_UPDATE_PERMISSIONS: `${BASE_URL}/admin/permissions`,
   ADMIN_DELETE: `${BASE_URL}/admin`,
-  ADMIN_MARK_EXPIRED: `${BASE_URL}/admin/mark-expired`
+  ADMIN_MARK_EXPIRED: `${BASE_URL}/admin/mark-expired`,
+  // Admin Feedback APIs
+  ADMIN_FEEDBACK: `${BASE_URL}/admin/feedback`,
+  ADMIN_UPDATE_FEEDBACK_STATUS: `${BASE_URL}/admin/feedback`,
+  ADMIN_RESPOND_FEEDBACK: `${BASE_URL}/admin/feedback`,
+  ADMIN_DELETE_FEEDBACK: `${BASE_URL}/admin/feedback`
 };

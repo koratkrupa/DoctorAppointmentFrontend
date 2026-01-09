@@ -42,6 +42,11 @@ const PatientSidebar = () => {
               Appointments
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/patient/feedback" activeClassName="active">
+              Feedback
+            </NavLink>
+          </li>
         </ul>
 
         {/* ✅ Logout Button just below Appointments */}
