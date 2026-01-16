@@ -43,6 +43,16 @@ const PatientSidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/patient/lab-tests" activeClassName="active">
+              Lab Tests
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/patient/consultation" activeClassName="active">
+              Online Consultation
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/patient/feedback" activeClassName="active">
               Feedback
             </NavLink>

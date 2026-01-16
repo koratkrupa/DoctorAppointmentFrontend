@@ -75,6 +75,35 @@ body, html {
   color: var(--color-dark-purple);
 }
 
+.ai-card {
+  cursor: pointer;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.ai-card:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+}
+
+.ai-card p {
+  color: white;
+}
+
+.ai-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.ai-card .book-btn {
+  background: white;
+  color: #4CAF50;
+}
+
+.ai-card .book-btn:hover {
+  background: #f0f0f0;
+  color: #3d8b40;
+}
+
 /* --- Section Titles (Select a Speciality / Symptoms) --- */
 h2 {
   margin: 5rem 0 2.5rem 0;    /* top margin increased to 5rem, bottom 2.5rem */

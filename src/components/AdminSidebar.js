@@ -26,6 +26,9 @@ const AdminSidebar = () => {
         <li><Link to="/admin/appointments">Appointments</Link></li>
         <li><Link to="/admin/users">Patients</Link></li>
         <li><Link to="/admin/doctors">Doctors</Link></li>
+        <li><Link to="/admin/lab-tests">Lab Tests</Link></li>
+        <li><Link to="/admin/lab-test-bookings">Lab Test Bookings</Link></li>
+        <li><Link to="/admin/consultations">Consultations</Link></li>
         <li><Link to="/admin/feedback">Feedback</Link></li>
         <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
       </ul>

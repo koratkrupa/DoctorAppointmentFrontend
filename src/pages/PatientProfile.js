@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { API } from "../config/api";
 import "../styles/patientProfile.css";
 import PatientSidebar from "../components/PatientSidebar";
 
 const PatientProfile = () => {
+  const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -130,6 +132,13 @@ const PatientProfile = () => {
               {saving ? "Saving..." : "Save Changes"}
             </button>
           )}
+          <button
+            className="forgot-password-btn"
+            onClick={() => navigate("/forgot-password")}
+            style={{ marginTop: "10px" }}
+          >
+            Change / Forgot Password
+          </button>
         </div>
 
         {/* Right side details */}

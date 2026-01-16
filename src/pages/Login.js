@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "../styles/login.css"; // your existing CSS
 import "../styles/variables.css";
-import {API} from "../config/api";
+import { API } from "../config/api";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -67,6 +67,16 @@ const Login = () => {
             onChange={handleChange}
             required
           />
+        </div>
+
+        <div className="form-links">
+          <button
+            type="button"
+            className="forgot-password"
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot password?
+          </button>
         </div>
 
         <button type="submit" className="login-button">

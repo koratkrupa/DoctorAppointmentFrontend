@@ -36,6 +36,26 @@
   opacity: 0.9;
 }
 
+.patient-forgot-password-btn {
+  margin-top: 14px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.patient-forgot-password-btn:hover {
+  background-color: #ffffff;
+  color: var(--color-dark-purple);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
 /* Stats Cards */
 .patient-stats-cards {
   display: grid;

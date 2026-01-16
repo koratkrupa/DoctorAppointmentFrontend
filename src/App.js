@@ -21,7 +21,17 @@ import AdminAppointments from "./pages/AdminAppointments";
 import AdminPatients from "./pages/AdminPatients";
 import AdminDoctors from "./pages/AdminDoctors";
 import AdminFeedback from "./pages/AdminFeedback";
+import AdminLabTests from "./pages/AdminLabTests";
+import AdminLabTestBookings from "./pages/AdminLabTestBookings";
+import PatientConsultation from "./pages/PatientConsultation";
+import DoctorConsultation from "./pages/DoctorConsultation";
+import AIAdvisor from "./pages/AIAdvisor";
+import AdminConsultations from "./pages/AdminConsultations";
 import PatientFeedback from "./pages/PatientFeedback";
+import ForgotPassword from "./pages/ForgotPassword";
+import LabTestListing from "./pages/LabTestListing";
+import BookLabTest from "./pages/BookLabTest";
+import PatientLabTests from "./pages/PatientLabTests";
 
 function App() {
   return (
@@ -29,15 +39,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/doctorsd" element={<DoctorDetailsForm />} />
         <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
         <Route path="/doctor/profile" element={<DoctorProfile />} />
         <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+        <Route path="/doctor/consultation" element={<DoctorConsultation />} />
         <Route path="/patient/dashboard" element={<PatientDashboard />} />
         <Route path="/patient/profile" element={<PatientProfile />} />
         <Route path="/patient/appointments" element={<PatientAppointments/>} />
         <Route path="/patient/feedback" element={<PatientFeedback/>} />
+        <Route path="/patient/lab-tests" element={<PatientLabTests/>} />
+        <Route path="/patient/consultation" element={<PatientConsultation/>} />
+        <Route path="/lab-tests" element={<LabTestListing/>} />
+        <Route path="/book-lab-test/:testId" element={<BookLabTest/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/doctors" element={<DoctorListing/>} />
@@ -48,6 +64,10 @@ function App() {
         <Route path="/admin/users" element={<AdminPatients/>} />
         <Route path="/admin/doctors" element={<AdminDoctors/>} />
         <Route path="/admin/feedback" element={<AdminFeedback/>} />
+        <Route path="/admin/lab-tests" element={<AdminLabTests/>} />
+        <Route path="/admin/lab-test-bookings" element={<AdminLabTestBookings/>} />
+        <Route path="/admin/consultations" element={<AdminConsultations/>} />
+        <Route path="/ai-advisor" element={<AIAdvisor/>} />
 
       </Routes>
     </Router>

@@ -63,7 +63,10 @@ const PatientDashboard = () => {
           ) : (
             <>
               <h1>Welcome {patientName} 👋</h1>
-              <p>You have {upcomingAppointments} upcoming appointment{upcomingAppointments !== 1 ? 's' : ''}.</p>
+              <p>
+                You have {upcomingAppointments} upcoming appointment
+                {upcomingAppointments !== 1 ? "s" : ""}.
+              </p>
             </>
           )}
         </div>

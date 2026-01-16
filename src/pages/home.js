@@ -55,10 +55,12 @@ const Home = () => {
     }
 
     // Navigate to doctors listing for the specific service
-    if (service === "appointment" || service === "consultation") {
+    if (service === "appointment") {
       navigate("/doctors");
+    } else if (service === "consultation") {
+      navigate("/patient/consultation");
     } else if (service === "labtest") {
-      alert("Lab test booking feature coming soon!");
+      navigate("/lab-tests");
     }
   };
 
@@ -99,6 +101,12 @@ const Home = () => {
         <div className="card">
           <p>Book Lab Test</p>
           <button className="book-btn" onClick={() => handleBookNow("labtest")}>Book Now</button>
+        </div>
+
+        <div className="card ai-card" onClick={() => navigate("/ai-advisor")}>
+          <div className="ai-icon">🤖</div>
+          <p>AI Health Advisor</p>
+          <button className="book-btn">Chat Now</button>
         </div>
       </div>
       {/* Specialities */}

@@ -1,5 +1,6 @@
 // src/pages/DoctorProfile.js
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/DoctorSidebar";
 import "../styles/doctorProfile.css";
 // Removed default image import
@@ -7,6 +8,7 @@ import { API } from "../config/api";
 const BACKEND_URL = "http://localhost:5000";
 
 const DoctorProfile = () => {
+  const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -142,6 +144,13 @@ const DoctorProfile = () => {
           ) : (
             <button className="edit-btn" onClick={() => setEdit(true)}>Edit Profile</button>
           )}
+          <button
+            className="forgot-password-btn"
+            onClick={() => navigate("/forgot-password")}
+            style={{ marginTop: "10px" }}
+          >
+            Change / Forgot Password
+          </button>
           {message && <p style={{ marginTop: 8 }}>{message}</p>}
         </div>
 
